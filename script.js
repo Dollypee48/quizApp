@@ -1,3 +1,5 @@
+// This is the quiz Question
+//array of object representing each quiz question
 const quizQuestion = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -50,6 +52,7 @@ const quizQuestion = [
         answer: "JSON.parse()"
     }
 ];
+//This line grabs a reference to the DOM element with the id or class
 
 const questionNumberEl = document.getElementById("question-number");
 const questionEl = document.getElementById("question");
@@ -67,8 +70,13 @@ let timeLeft = 10;
 let timer;
 let answerSelected = false;
 
+
+// Hiding the quiz and result initially using classList.add("hide")
+
 quizEl.classList.add("hide"); 
 resultEl.classList.add("hide"); 
+
+//these function load the current question and options 
 
 function loadQuestion() {
     const { question, options } = quizQuestion[currentQuestion];
@@ -86,6 +94,8 @@ function loadQuestion() {
     nextBtn.disabled = true;
     startTimer();
 }
+
+// this function is triggered when a user selects an option
 
 function selectOption(option) {
     if (!answerSelected) {
@@ -109,6 +119,8 @@ function selectOption(option) {
     }
 }
 
+// This function loads the next question or shows the result if all question have been answered.
+
 function loadNextQuestion() {
     clearInterval(timer);
     if (currentQuestion < quizQuestion.length - 1) {
@@ -119,9 +131,13 @@ function loadNextQuestion() {
     }
 }
 
+// these triggered the loadNextQuestion function by adding the click event listener to Next button 
+
 nextBtn.addEventListener("click", () => {
     loadNextQuestion();
 });
+
+//These function starts the countdown timer for each question
 
 function startTimer() {
     clearInterval(timer);
@@ -141,6 +157,7 @@ function startTimer() {
     }, 1000);
 }
 
+// This function display the result at the end of the quiz
 function showResult() {
     quizEl.classList.add("hide");
     resultEl.classList.remove("hide");
@@ -156,6 +173,7 @@ function showResult() {
 
 }
 
+// adding click event listener to Start button
 startBtn.addEventListener("click", () => {
     startBtn.classList.add("hide"); 
     quizEl.classList.remove("hide"); 
